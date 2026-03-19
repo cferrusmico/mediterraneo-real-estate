@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valoración | Mediterráneo Real Estate</title>
+  <meta name="description" content="Valora tu propiedad en Sueca, Valencia. Calcula una estimación orientativa y recibe asesoramiento personalizado.">
+  <link rel="canonical" href="https://mediterraneorealestate.netlify.app/valoracion.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mediterraneorealestate.netlify.app/valoracion.html">
+  <meta property="og:title" content="Valoración | Mediterráneo Real Estate">
+  <meta property="og:description" content="Calcula una estimación orientativa del valor de tu vivienda en menos de un minuto.">
+  <meta property="og:image" content="https://mediterraneorealestate.netlify.app/assets/logo.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Valoración | Mediterráneo Real Estate">
+  <meta name="twitter:description" content="Calcula una estimación orientativa del valor de tu vivienda.">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPLTVZCX7P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-HPLTVZCX7P');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="Mediterráneo Real Estate">
+        <span class="logo-text">Mediterráneo Real Estate</span>
+      </a>
+      <nav class="nav-main" id="nav-main">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="comprar.html">Comprar</a>
+        <a href="alquilar.html">Alquilar</a>
+        <a href="valoracion.html" class="active">Valoración</a>
+        <a href="index.html#sobre">Sobre nosotros</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <header class="page-header">
+      <div class="container">
+        <h1>Valoración</h1>
+        <p>Una estimación orientativa, con estética premium y respuesta rápida</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="wizard reveal" id="valuation-wizard" data-total-steps="6">
+          <div class="wizard-top">
+            <div class="wizard-kicker">Gratuito, confidencial y sin compromiso</div>
+            <div class="wizard-title">Reciba su valoración al momento</div>
+            <div class="wizard-progress" aria-label="Progreso">
+              <div class="wizard-progress-bar" id="wizard-progress-bar"></div>
+            </div>
+            <div class="wizard-step-label" id="wizard-step-label">1 / 6 · Tipo de propiedad</div>
+          </div>
+
+          <form id="valuation-wizard-form" class="wizard-shell">
+            <!-- STEP 1 -->
+            <section class="wizard-step is-active" data-step="1" aria-label="Tipo de propiedad">
+              <div class="wizard-question">Seleccione el tipo de propiedad</div>
+              <div class="option-grid">
+                <button type="button" class="option-card" data-pick="tipo" data-value="chalet">
+                  <div class="option-title">Casa</div>
+                  <div class="option-sub">Chalet · Vivienda unifamiliar</div>
+                </button>
+                <button type="button" class="option-card" data-pick="tipo" data-value="piso">
+                  <div class="option-title">Piso</div>
+                  <div class="option-sub">Apartamento · Piso</div>
+                </button>
+                <button type="button" class="option-card" data-pick="tipo" data-value="atico">
+                  <div class="option-title">Ático</div>
+                  <div class="option-sub">Con terraza (si aplica)</div>
+                </button>
+                <button type="button" class="option-card" data-pick="tipo" data-value="local">
+                  <div class="option-title">Local</div>
+                  <div class="option-sub">Comercial · Oficina</div>
+                </button>
+              </div>
+            </section>
+
+            <!-- STEP 2 -->
+            <section class="wizard-step" data-step="2" aria-label="Ubicación">
+              <div class="wizard-question">¿Dónde está ubicada su propiedad?</div>
+              <div class="form-group">
+                <label for="w-ubicacion">Dirección de su propiedad</label>
+                <input id="w-ubicacion" name="ubicacion" type="text" placeholder="Calle y número de casa, ciudad" autocomplete="street-address">
+                <div class="wizard-hint">
+                  <div>Necesitamos su dirección exacta para calcular un rango de precios más preciso.</div>
+                  <div>También nos ayuda a encontrar al mejor experto en su zona.</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- STEP 3 -->
+            <section class="wizard-step" data-step="3" aria-label="Detalles">
+              <div class="wizard-question">Introduzca los detalles de su propiedad</div>
+              <div class="tool-grid wizard-grid">
+                <div class="form-group">
+                  <label for="w-estado">Estado de la propiedad</label>
+                  <select id="w-estado" name="estado">
+                    <option value="nuevo">Obra nueva</option>
+                    <option value="reformado">Reformado</option>
+                    <option value="buen-estado" selected>Buen estado</option>
+                    <option value="para-actualizar">Para actualizar</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="w-superficie">Superficie construida</label>
+                  <div class="unit-field">
+                    <input id="w-superficie" name="metros" type="number" min="20" step="1" placeholder="m²">
+                    <span class="unit">m²</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="w-superficie-total">Superficie total (opcional)</label>
+                  <div class="unit-field">
+                    <input id="w-superficie-total" name="metrosTotal" type="number" min="20" step="1" placeholder="m²">
+                    <span class="unit">m²</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Nº de habitaciones</label>
+                  <div class="counter" data-counter="habitaciones">
+                    <button type="button" class="counter-btn" data-counter-action="dec" aria-label="Restar habitación">−</button>
+                    <input type="text" readonly value="2" class="counter-value" aria-label="Habitaciones">
+                    <button type="button" class="counter-btn" data-counter-action="inc" aria-label="Sumar habitación">+</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Nº de baños</label>
+                  <div class="counter" data-counter="banos">
+                    <button type="button" class="counter-btn" data-counter-action="dec" aria-label="Restar baño">−</button>
+                    <input type="text" readonly value="1" class="counter-value" aria-label="Baños">
+                    <button type="button" class="counter-btn" data-counter-action="inc" aria-label="Sumar baño">+</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- STEP 4 -->
+            <section class="wizard-step" data-step="4" aria-label="Características">
+              <div class="wizard-kicker">Valorar propiedad</div>
+              <div class="wizard-question">Cuéntenos más sobre las características de su propiedad</div>
+              <div class="check-list">
+                <label class="check-row"><span>Piscina</span><input type="checkbox" name="extras" value="piscina"></label>
+                <label class="check-row"><span>Terraza</span><input type="checkbox" name="extras" value="terraza"></label>
+                <label class="check-row"><span>Jardín</span><input type="checkbox" name="extras" value="jardin"></label>
+                <label class="check-row"><span>Estacionamiento</span><input type="checkbox" name="extras" value="parking"></label>
+              </div>
+            </section>
+
+            <!-- STEP 5 -->
+            <section class="wizard-step" data-step="5" aria-label="Motivo">
+              <div class="wizard-question">¿Cuál es el motivo de su valoración?</div>
+              <div class="wizard-subtext">Su selección nos ayuda a ofrecerle un soporte personalizado y no afectará al valor estimado de su propiedad.</div>
+              <div class="option-stack">
+                <button type="button" class="option-card option-row" data-pick="motivo" data-value="vender-rapido">Vender en menos de 4 meses</button>
+                <button type="button" class="option-card option-row" data-pick="motivo" data-value="vender-despues">Vender en más de 4 meses</button>
+                <button type="button" class="option-card option-row" data-pick="motivo" data-value="valorar-comprar">Valorar para comprar</button>
+                <button type="button" class="option-card option-row" data-pick="motivo" data-value="curiosidad">Tengo curiosidad</button>
+              </div>
+            </section>
+
+            <!-- STEP 6 -->
+            <section class="wizard-step" data-step="6" aria-label="Datos y resultado">
+              <div class="wizard-question">Un último paso</div>
+              <div class="wizard-subtext">Comparta sus datos para recibir una estimación gratuita y sin compromiso.</div>
+              <div class="tool-grid wizard-grid">
+                <div class="form-group">
+                  <label for="w-nombre">Nombre</label>
+                  <input id="w-nombre" name="nombre" type="text" placeholder="Nombre">
+                </div>
+                <div class="form-group">
+                  <label for="w-apellido">Apellido</label>
+                  <input id="w-apellido" name="apellido" type="text" placeholder="Apellido">
+                </div>
+                <div class="form-group">
+                  <label for="w-email">Email *</label>
+                  <input id="w-email" name="email" type="email" placeholder="tu@email.com" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                  <label for="w-tel">Num. Teléfono *</label>
+                  <input id="w-tel" name="telefono" type="tel" placeholder="+34 600 000 000" required autocomplete="tel">
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                  <label for="w-detalles">¿Hay más detalles que le gustaría compartir?</label>
+                  <textarea id="w-detalles" name="detalles" maxlength="300" placeholder="Sus detalles adicionales de la propiedad"></textarea>
+                  <div class="char-count"><span id="w-count">0</span>/300</div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary wizard-submit" data-ga-event="lead_valuation" data-ga-label="wizard_result">Mostrar resultado ahora</button>
+
+              <div class="tool-result" id="wizard-result" role="status" aria-live="polite">
+                <div class="wizard-result-title">Resultado orientativo</div>
+                <div id="wizard-result-text" class="wizard-result-price"></div>
+                <div class="wizard-subtext" style="margin-top: 0.5rem;">Nota: estimación simulada para captación. Ajustamos con visita y comparables reales.</div>
+                <div style="margin-top: 0.9rem;">
+                  <a class="btn btn-outline" href="index.html#contacto">Quiero una valoración precisa</a>
+                </div>
+              </div>
+            </section>
+
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-outline" id="wizard-back">Atrás</button>
+              <div class="wizard-nav-right">
+                <button type="button" class="btn btn-outline" id="wizard-skip">Omitir</button>
+                <button type="button" class="btn btn-primary" id="wizard-next">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Mediterráneo Real Estate</h4>
+        <p>Sueca, Valencia</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <a href="index.html#inicio">Inicio</a><br>
+        <a href="index.html#sobre">Sobre nosotros</a><br>
+        <a href="comprar.html">Comprar</a><br>
+        <a href="alquilar.html">Alquilar</a><br>
+        <a href="valoracion.html">Valoración</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="mailto:mediterraneorealestate24@gmail.com">mediterraneorealestate24@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Mediterráneo Real Estate. Sueca, Valencia.
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
+

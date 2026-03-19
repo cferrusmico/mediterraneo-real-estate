@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alquilar | Mediterráneo Real Estate</title>
+  <meta name="description" content="Pisos y viviendas de alquiler en Sueca y la Ribera Baixa.">
+  <link rel="canonical" href="https://mediterraneorealestate.netlify.app/alquilar.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mediterraneorealestate.netlify.app/alquilar.html">
+  <meta property="og:title" content="Alquilar | Mediterráneo Real Estate">
+  <meta property="og:description" content="Pisos y viviendas de alquiler en Sueca y la Ribera Baixa.">
+  <meta property="og:image" content="https://mediterraneorealestate.netlify.app/assets/logo.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alquilar | Mediterráneo Real Estate">
+  <meta name="twitter:description" content="Pisos y viviendas de alquiler en Sueca y la Ribera Baixa.">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPLTVZCX7P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-HPLTVZCX7P');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="Mediterráneo Real Estate">
+        <span class="logo-text">Mediterráneo Real Estate</span>
+      </a>
+      <nav class="nav-main" id="nav-main">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="index.html#sobre">Sobre nosotros</a>
+        <a href="comprar.html">Comprar</a>
+        <a href="alquilar.html" class="active">Alquilar</a>
+        <a href="valoracion.html">Valoración</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <header class="page-header">
+      <div class="container">
+        <h1>Alquilar</h1>
+        <p>Viviendas y locales en alquiler en Sueca y alrededores</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="listing-filters">
+          <label for="tipo">Tipo:</label>
+          <select id="tipo">
+            <option value="">Todos</option>
+            <option value="piso">Piso</option>
+            <option value="chalet">Chalet</option>
+            <option value="local">Local</option>
+          </select>
+          <label for="habitaciones">Habitaciones:</label>
+          <select id="habitaciones">
+            <option value="">Cualquiera</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3+</option>
+          </select>
+        </div>
+
+        <div class="card-grid" id="property-list" data-mode="alquilar" aria-label="Listado de propiedades en alquiler"></div>
+
+        <div class="listing-placeholder" style="margin-top: 2rem;">
+          <p>¿Quieres alquilar tu propiedad? También gestionamos alquileres para propietarios.</p>
+          <a href="contacto.html" class="btn btn-primary" data-ga-event="cta_contact" data-ga-label="alquilar">Contactar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Mediterráneo Real Estate</h4>
+        <p>Sueca, Valencia</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <a href="index.html">Inicio</a><br>
+        <a href="index.html#sobre">Sobre nosotros</a><br>
+        <a href="comprar.html">Comprar</a><br>
+        <a href="alquilar.html">Alquilar</a><br>
+        <a href="index.html#contacto">Contacto</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="mailto:mediterraneorealestate24@gmail.com">mediterraneorealestate24@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Mediterráneo Real Estate. Sueca, Valencia.
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>

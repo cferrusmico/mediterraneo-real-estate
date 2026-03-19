@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propiedad | Mediterráneo Real Estate</title>
+  <meta name="description" content="Detalle de propiedad en Sueca, Valencia. Galería, características y contacto.">
+  <link rel="canonical" href="https://mediterraneorealestate.netlify.app/propiedad.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mediterraneorealestate.netlify.app/propiedad.html">
+  <meta property="og:title" content="Propiedad | Mediterráneo Real Estate">
+  <meta property="og:description" content="Detalle de propiedad. Galería, características y contacto.">
+  <meta property="og:image" content="https://mediterraneorealestate.netlify.app/assets/logo.png">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Propiedad | Mediterráneo Real Estate">
+  <meta name="twitter:description" content="Detalle de propiedad.">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HPLTVZCX7P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-HPLTVZCX7P');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="assets/logo.png" alt="Mediterráneo Real Estate">
+        <span class="logo-text">Mediterráneo Real Estate</span>
+      </a>
+      <nav class="nav-main" id="nav-main">
+        <a href="index.html#inicio">Inicio</a>
+        <a href="comprar.html">Comprar</a>
+        <a href="alquilar.html">Alquilar</a>
+        <a href="valoracion.html">Valoración</a>
+        <a href="index.html#sobre">Sobre nosotros</a>
+        <a href="index.html#contacto">Contacto</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </header>
+
+  <main id="property-detail">
+    <header class="page-header">
+      <div class="container">
+        <h1 style="margin-bottom: 0.5rem;">Detalle de propiedad</h1>
+        <p>Imágenes, características y contacto inmediato</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="detail-grid">
+          <div class="gallery reveal" aria-label="Galería de imágenes">
+            <div class="gallery-main">
+              <img id="gallery-main-img" src="" alt="Imagen principal de la propiedad">
+              <div class="gallery-controls" aria-hidden="false">
+                <button class="gallery-btn" id="gallery-prev" type="button" aria-label="Imagen anterior">‹</button>
+                <button class="gallery-btn" id="gallery-next" type="button" aria-label="Imagen siguiente">›</button>
+              </div>
+            </div>
+            <div class="gallery-thumbs" id="gallery-thumbs"></div>
+          </div>
+
+          <aside class="detail-panel reveal">
+            <div class="pill" id="detail-pill">propiedad</div>
+            <h1 id="detail-title" style="margin-top: 0.75rem;"></h1>
+            <div class="detail-location" id="detail-location"></div>
+            <div class="detail-price" id="detail-price"></div>
+
+            <div class="detail-features" aria-label="Características principales">
+              <div class="feature">
+                <div class="label">Superficie</div>
+                <div class="value" id="feature-area"></div>
+              </div>
+              <div class="feature">
+                <div class="label">Habitaciones</div>
+                <div class="value" id="feature-rooms"></div>
+              </div>
+              <div class="feature">
+                <div class="label">Baños</div>
+                <div class="value" id="feature-baths"></div>
+              </div>
+              <div class="feature">
+                <div class="label">Zona</div>
+                <div class="value">Sueca · Valencia</div>
+              </div>
+            </div>
+
+            <h2 style="margin-top: 0.5rem;">Descripción</h2>
+            <p id="detail-description" style="color: rgba(30,42,53,0.60); margin-top: 0.5rem;"></p>
+
+            <div style="margin-top: 1.25rem;">
+              <a href="index.html#contacto" class="btn btn-primary" style="width: 100%;" data-ga-event="cta_contact" data-ga-label="detalle_contacto">Solicitar visita</a>
+              <div style="display:flex; gap: 0.75rem; margin-top: 0.75rem;">
+                <a href="comprar.html" class="btn btn-outline" style="flex:1;">Ver comprar</a>
+                <a href="alquilar.html" class="btn btn-outline" style="flex:1;">Ver alquilar</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <h4>Mediterráneo Real Estate</h4>
+        <p>Sueca, Valencia</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <a href="index.html#inicio">Inicio</a><br>
+        <a href="index.html#sobre">Sobre nosotros</a><br>
+        <a href="comprar.html">Comprar</a><br>
+        <a href="alquilar.html">Alquilar</a><br>
+        <a href="index.html#contacto">Contacto</a>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="index.html#contacto">Enviar mensaje</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Mediterráneo Real Estate. Sueca, Valencia.
+    </div>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
+
