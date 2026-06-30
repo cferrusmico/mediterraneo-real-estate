@@ -1,94 +1,72 @@
-# Próximos pasos con Netlify: Analytics, SEO y actualizaciones
+# Próximos pasos con Vercel: Analytics, SEO y actualizaciones
 
-Tu sitio ya está en línea con una URL de Netlify (ej. `https://tu-sitio.netlify.app`). Siguiente:
+> **Nota:** El sitio en producción está en **Vercel**, no en Netlify.  
+> URL actual: **https://mediterraneo-real-estate.vercel.app/**
 
----
-
-## 1. Poner tu URL de Netlify en el proyecto
-
-Sustituye **en todo el proyecto** el placeholder por tu URL real de Netlify.
-
-**Busca:** `https://SITE_URL`  
-**Reemplaza por:** tu URL exacta, por ejemplo `https://mediterraneo-xyz123.netlify.app` (con `https://`, sin barra final en la mayoría de sitios).
-
-**Archivos a tocar:**
-- `index.html` (varias veces: canonical, og:url, og:image, JSON-LD)
-- `comprar.html`
-- `alquilar.html`
-- `contacto.html`
-- `valoracion.html`
-- `sitemap.xml` (cada `<loc>` y la línea del Sitemap)
-- `robots.txt` (solo la línea `Sitemap:`)
-
-Puedes usar **Buscar y reemplazar** en Cursor: Buscar `https://SITE_URL`, Reemplazar por tu URL de Netlify, en todos los archivos.
+El proyecto está conectado a GitHub; cada `git push` a `main` actualiza Vercel automáticamente.
 
 ---
 
-## 2. Activar Google Analytics (GA4)
+## 1. URL del sitio en el proyecto
 
-### Crear la propiedad en Google
-1. Entra en [analytics.google.com](https://analytics.google.com) con tu cuenta Google.
-2. **Admin** (engranaje abajo a la izquierda) → **Crear propiedad**.
-3. Nombre: p. ej. "Mediterráneo Real Estate".
-4. Zona horaria e idioma → Siguiente.
-5. En **Flujo de datos** → **Web**.
-6. **URL del sitio:** pega tu URL de Netlify (ej. `https://tu-sitio.netlify.app`).
-7. Copia el **ID de medición** (formato `G-XXXXXXXXXX`).
+La URL de Vercel ya está en canonical, Open Graph, `sitemap.xml`, `robots.txt` y JSON-LD.
 
-### Poner el ID en tu web
-En los 5 HTML del proyecto:
-- **Busca:** `G-XXXXXXXXXX`
-- **Reemplaza por:** tu ID real (ej. `G-ABC123XY`).
+Si más adelante añades un **dominio propio** en Vercel, sustituye en todo el proyecto:
 
-Archivos: `index.html`, `comprar.html`, `alquilar.html`, `contacto.html`, `valoracion.html` (en cada uno hay 2 veces el ID).
+**Buscar:** `https://mediterraneo-real-estate.vercel.app`  
+**Reemplazar por:** tu dominio final (ej. `https://www.tudominio.com`)
+
+Archivos: todos los `.html`, `sitemap.xml`, `robots.txt`.
+
+---
+
+## 2. Google Analytics (GA4)
+
+1. [analytics.google.com](https://analytics.google.com) → **Admin** → tu propiedad.
+2. **Flujos de datos** → edita el flujo web y pon la URL de Vercel.
+3. El ID `G-HPLTVZCX7P` ya está en los HTML; no hace falta cambiarlo si es el mismo.
 
 ### Ver el rendimiento
-- [analytics.google.com](https://analytics.google.com) → tu propiedad.
-- **Informes** → **Tiempo real**: ver visitas al instante.
+- **Tiempo real**: visitas al instante.
 - **Participación** → **Páginas y pantallas**: páginas más vistas.
-- **Participación** → **Eventos**: clics en "Contactar", etc.
-
-Los datos normales pueden tardar 24–48 h; **Tiempo real** funciona en pocos minutos.
+- **Participación** → **Eventos**: clics en CTAs y formularios.
 
 ---
 
-## 3. Analizar el SEO (Google Search Console)
+## 3. Google Search Console (SEO)
 
-1. Entra en [search.google.com/search-console](https://search.google.com/search-console).
-2. **Añadir propiedad** → **Prefijo de URL**.
-3. Pega tu URL de Netlify (ej. `https://tu-sitio.netlify.app`).
-4. **Verificar:** elige "Etiqueta HTML". Copia el valor de `content="..."`
-5. En tu proyecto, en `index.html`, dentro del `<head>`, añade:
-   ```html
-   <meta name="google-site-verification" content="EL_CODIGO_QUE_TE_DIO_GOOGLE">
-   ```
-6. Vuelve a subir el sitio a Netlify (ver sección 4).
-7. En Search Console, clic en **Comprobar**. Cuando esté verificado:
-   - **Rendimiento**: ver búsquedas, clics e impresiones en Google.
-   - **Sitemaps**: añade `https://tu-sitio.netlify.app/sitemap.xml`.
+1. [search.google.com/search-console](https://search.google.com/search-console) → **Añadir propiedad**.
+2. URL: `https://mediterraneo-real-estate.vercel.app`
+3. Verifica (etiqueta HTML en `index.html` si Google te lo pide).
+4. **Sitemaps** → envía: `https://mediterraneo-real-estate.vercel.app/sitemap.xml`
 
-Así podrás analizar el SEO de tu dominio de Netlify.
+Si tenías la propiedad de Netlify, puedes dejarla o eliminarla cuando Vercel sea la única versión pública.
 
 ---
 
-## 4. ¿Se actualiza solo el sitio cuando cambias algo?
+## 4. Publicar cambios
 
-**Depende de cómo subas el sitio:**
+```bash
+git add .
+git commit -m "Actualizar URLs a Vercel"
+git push
+```
 
-| Forma de publicar en Netlify | ¿Se actualiza solo? |
-|------------------------------|----------------------|
-| **Drag and drop** (arrastrar la carpeta) | **No.** Cada vez que cambies el sitio, debes **volver a arrastrar la carpeta** a Netlify. La nueva versión sustituye a la anterior. |
-| **Conectado a Git** (GitHub, etc.) | **Sí.** Cada vez que hagas "push" al repositorio, Netlify vuelve a desplegar y el sitio se actualiza solo. |
+Vercel redespliega en unos segundos. No hace falta subir archivos a mano.
 
-**Resumen:** Si solo usas drag and drop, cada cambio en tu PC (textos, GA, SEO, etc.) solo se verá en la web después de **volver a arrastrar la carpeta Cursor** a Netlify. Si conectas el proyecto a un repo de Git y lo enlazas a Netlify, cada push actualizará el sitio automáticamente.
+---
+
+## 5. Netlify (opcional)
+
+Si ya no usas Netlify, despublica el sitio antiguo o configura una **redirección 301** a Vercel para evitar contenido duplicado en Google.
 
 ---
 
 ## Resumen rápido
 
-1. Reemplazar `https://SITE_URL` por tu URL de Netlify en todos los archivos.
-2. Reemplazar `G-XXXXXXXXXX` por tu ID de GA4 en los 5 HTML.
-3. Volver a subir la carpeta a Netlify (drag and drop) para que los cambios estén en vivo.
-4. Ver Analytics en [analytics.google.com](https://analytics.google.com).
-5. Verificar la propiedad en Search Console y enviar el sitemap para analizar SEO.
-6. Cada vez que cambies el sitio: o bien vuelves a hacer drag and drop, o bien usas Git para que Netlify actualice solo.
+| Tarea | Dónde |
+|-------|--------|
+| Ver el sitio en vivo | https://mediterraneo-real-estate.vercel.app/ |
+| Actualizar la web | `git push` → Vercel |
+| Analytics | analytics.google.com |
+| SEO / indexación | search.google.com/search-console + sitemap |

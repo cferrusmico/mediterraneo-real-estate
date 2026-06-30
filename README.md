@@ -20,7 +20,13 @@ assets/logo.png
 
 Si tu logo tiene otro nombre, cambia la ruta en cada HTML donde aparece `src="assets/logo.png"`.
 
-## Cómo ver el sitio
+## Sitio en producción (Vercel)
+
+**https://mediterraneo-real-estate.vercel.app/**
+
+El proyecto está conectado a GitHub; cada `git push` a `main` actualiza Vercel automáticamente.
+
+## Cómo ver el sitio en local
 
 Abre `index.html` en el navegador o usa un servidor local, por ejemplo:
 

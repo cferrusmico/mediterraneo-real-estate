@@ -18,7 +18,7 @@ Este documento explica qué está configurado y **cómo ver el rendimiento** de 
 - **JSON-LD**: en la home hay datos estructurados de tipo `RealEstateAgent` para Google.
 
 ### Sitemap y robots
-- `sitemap.xml`: lista de las 5 URLs del sitio.
+- `sitemap.xml`: lista de las 6 URLs del sitio.
 - `robots.txt`: permite a los buscadores rastrear todo y apunta al sitemap.
 
 ---
@@ -32,7 +32,7 @@ Este documento explica qué está configurado y **cómo ver el rendimiento** de 
 3. Nombre de la propiedad: p. ej. "Mediterráneo Real Estate".
 4. Elige zona horaria e idioma y crea.
 5. Al configurar **flujo de datos**, elige **Web**.
-6. URL del sitio: tu dominio (ej. `https://www.mediterraneorealestate.com`).
+6. URL del sitio: `https://mediterraneo-real-estate.vercel.app` (o tu dominio propio si lo añades en Vercel).
 7. Copia el **ID de medición** (formato `G-XXXXXXXXXX`).
 
 Sustituye en **todos** los HTML:
@@ -47,7 +47,7 @@ Archivos a tocar: `index.html`, `comprar.html`, `alquilar.html`, `contacto.html`
 En **todos** los archivos donde salga:
 
 - Busca: `https://SITE_URL`
-- Reemplaza por: tu URL real **con** `https://` (ej. `https://www.mediterraneorealestate.com`).
+- Reemplaza por: tu URL real **con** `https://` (producción actual: `https://mediterraneo-real-estate.vercel.app`).
 
 Archivos:
 - Los HTML (canonical, `og:url`, `og:image`, `twitter`, y en `index.html` el JSON-LD).

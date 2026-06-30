@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mediterraneorealestate.netlify.app/sitemap.xml
+Sitemap: https://mediterraneo-real-estate.vercel.app/sitemap.xml
