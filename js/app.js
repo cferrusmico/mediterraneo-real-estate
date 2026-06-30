@@ -219,17 +219,24 @@ function initContactForms() {
   const forms = Array.from(document.querySelectorAll('form[data-validate="contact"], #contact-form'));
   if (!forms.length) return;
 
+  const CONTACT_EMAIL = 'cferrusmico@gmail.com';
+  const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`;
+
   forms.forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const nombre = form.querySelector('input[name="nombre"], #nombre');
       const email = form.querySelector('input[name="email"], #email');
       const telefono = form.querySelector('input[name="telefono"], #telefono');
       const mensaje = form.querySelector('textarea[name="mensaje"], #mensaje');
       const alertBox = form.querySelector('[data-form-alert]');
+      const submitBtn = form.querySelector('[type="submit"]');
 
       [nombre, email, telefono, mensaje].forEach(clearFieldError);
-      if (alertBox) alertBox.classList.remove('is-visible');
+      if (alertBox) {
+        alertBox.classList.remove('is-visible', 'is-success', 'is-error');
+        alertBox.textContent = '';
+      }
 
       let ok = true;
       if (!nombre || !String(nombre.value || '').trim()) {
@@ -251,35 +258,60 @@ function initContactForms() {
 
       if (!ok) return;
 
-      const to = 'mediterraneorealestate24@gmail.com';
-      const subject = 'Nuevo mensaje desde la web — Mediterráneo Real Estate';
-      const bodyLines = [
-        'Nueva consulta desde la web:',
-        '',
-        `Nombre: ${String(nombre?.value || '').trim()}`,
-        `Email: ${String(email?.value || '').trim()}`,
-        `Teléfono: ${String(telefono?.value || '').trim()}`,
-        `Mensaje: ${String(mensaje?.value || '').trim() || '(sin mensaje)'}`,
-        '',
-        `Página: ${window.location.href}`,
-      ];
-      const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-        bodyLines.join('\n')
-      )}`;
-
-      if (alertBox) {
-        alertBox.textContent = 'Perfecto. Se abrirá tu gestor de correo para enviar el mensaje.';
-        alertBox.classList.add('is-visible');
-      } else {
-        // fallback
-        form.insertAdjacentHTML(
-          'beforeend',
-          '<div class="inline-alert is-visible" data-form-alert>Perfecto. Se abrirá tu gestor de correo para enviar el mensaje.</div>'
-        );
+      const defaultLabel = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando…';
       }
 
-      form.reset();
-      window.location.href = mailto;
+      try {
+        const response = await fetch(FORMSUBMIT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: String(nombre?.value || '').trim(),
+            email: String(email?.value || '').trim(),
+            phone: String(telefono?.value || '').trim(),
+            message: String(mensaje?.value || '').trim() || '(sin mensaje)',
+            _subject: 'Nuevo mensaje desde la web — Mediterráneo Real Estate',
+            _template: 'table',
+            _captcha: 'false',
+            page: window.location.href,
+          }),
+        });
+
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || String(result.success) !== 'true') {
+          throw new Error('send_failed');
+        }
+
+        form.reset();
+        if (alertBox) {
+          alertBox.textContent =
+            'Mensaje enviado correctamente. Te responderemos lo antes posible.';
+          alertBox.classList.add('is-visible', 'is-success');
+        }
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: 'contact_success',
+          });
+        }
+      } catch {
+        if (alertBox) {
+          alertBox.textContent =
+            'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbenos directamente por email.';
+          alertBox.classList.add('is-visible', 'is-error');
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = defaultLabel || 'Enviar mensaje';
+        }
+      }
     });
   });
 }

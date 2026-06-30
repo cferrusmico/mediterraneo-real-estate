@@ -50,40 +50,62 @@
     <header class="page-header">
       <div class="container">
         <h1>Contacto</h1>
-        <p>Estamos en Sueca para atenderte</p>
+        <p>Cuéntanos qué necesitas. Te respondemos con rapidez.</p>
       </div>
     </header>
 
-    <section class="section">
-      <div class="container">
-        <div class="contact-layout">
-          <div class="contact-info">
-            <h3>Mediterráneo Real Estate</h3>
-            <p><strong>Dirección:</strong><br>Sueca, Valencia<br>Ribera Baixa</p>
-            <p><strong>Teléfono:</strong><br><a href="tel:+349612300000">961 230 000</a></p>
-            <p><strong>Email:</strong><br><a href="mailto:mediterraneorealestate24@gmail.com">mediterraneorealestate24@gmail.com</a></p>
-            <p><strong>Horario:</strong><br>Lunes a Viernes: 10:00 – 14:00 / 17:00 – 20:00<br>Sábados: 10:00 – 14:00</p>
-          </div>
-          <div class="contact-form">
-            <h3 style="margin-bottom: 1.25rem;">Envíanos un mensaje</h3>
-            <form action="#" method="post" id="contact-form" data-validate="contact">
-              <div class="form-group">
-                <label for="nombre">Nombre *</label>
-                <input type="text" id="nombre" name="nombre" required>
+    <section class="section section-contact">
+      <div class="container container-narrow">
+        <div class="contact-shell reveal">
+          <aside class="contact-details">
+            <p class="contact-kicker">Hablemos</p>
+            <h2 class="contact-heading">Estamos en Sueca para atenderte</h2>
+            <p class="contact-lead">Compra, venta o alquiler: te asesoramos con cercanía y sin complicaciones.</p>
+
+            <ul class="contact-list">
+              <li class="contact-list-item">
+                <span class="contact-list-label">Ubicación</span>
+                <span class="contact-list-value">Sueca, Valencia · Ribera Baixa</span>
+              </li>
+              <li class="contact-list-item">
+                <span class="contact-list-label">Teléfono</span>
+                <a class="contact-list-value" href="tel:+349612300000">961 230 000</a>
+              </li>
+              <li class="contact-list-item">
+                <span class="contact-list-label">Email</span>
+                <a class="contact-list-value" href="mailto:mediterraneorealestate24@gmail.com">mediterraneorealestate24@gmail.com</a>
+              </li>
+              <li class="contact-list-item">
+                <span class="contact-list-label">Horario</span>
+                <span class="contact-list-value">Lun–Vie: 10:00–14:00 / 17:00–20:00<br>Sáb: 10:00–14:00</span>
+              </li>
+            </ul>
+          </aside>
+
+          <div class="contact-form-panel">
+            <h3 class="contact-form-title">Envíanos un mensaje</h3>
+            <p class="contact-form-sub">Rellena el formulario y te contactaremos lo antes posible.</p>
+
+            <form id="contact-form" data-validate="contact" novalidate>
+              <div class="contact-form-grid">
+                <div class="form-group">
+                  <label for="nombre">Nombre *</label>
+                  <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                  <label for="telefono">Teléfono *</label>
+                  <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="+34 600 000 000">
+                </div>
+                <div class="form-group form-group-full">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" name="email" required autocomplete="email" placeholder="tu@email.com">
+                </div>
+                <div class="form-group form-group-full">
+                  <label for="mensaje">Mensaje</label>
+                  <textarea id="mensaje" name="mensaje" placeholder="Indica si buscas comprar, alquilar o más información…"></textarea>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required>
-              </div>
-              <div class="form-group">
-                <label for="telefono">Teléfono *</label>
-                <input type="tel" id="telefono" name="telefono" required>
-              </div>
-              <div class="form-group">
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" placeholder="Indica si buscas comprar, alquilar o más información..."></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" style="width: 100%;" data-ga-event="form_submit" data-ga-label="contacto">Enviar mensaje</button>
+              <button type="submit" class="btn btn-primary contact-submit" data-ga-event="form_submit" data-ga-label="contacto">Enviar mensaje</button>
               <div class="inline-alert" data-form-alert role="status" aria-live="polite"></div>
             </form>
           </div>
