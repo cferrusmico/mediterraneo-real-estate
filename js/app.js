@@ -189,8 +189,8 @@ function validateEmail(value) {
 }
 
 function validatePhone(value) {
-  const v = String(value || '').replace(/\s+/g, '').trim();
-  return /^(\+?\d{9,15})$/.test(v);
+  const digits = String(value || '').replace(/\D/g, '');
+  return digits.length >= 9 && digits.length <= 15;
 }
 
 function setFieldError(input, message) {
@@ -277,6 +277,7 @@ function initContactForms() {
             phone: String(telefono?.value || '').trim(),
             message: String(mensaje?.value || '').trim() || '(sin mensaje)',
             _subject: 'Nuevo mensaje desde la web — Mediterráneo Real Estate',
+            _replyto: String(email?.value || '').trim(),
             _template: 'table',
             _captcha: 'false',
             page: window.location.href,
@@ -284,8 +285,14 @@ function initContactForms() {
         });
 
         const result = await response.json().catch(() => ({}));
-        if (!response.ok || String(result.success) !== 'true') {
-          throw new Error('send_failed');
+        if (!response.ok || String(result.success).toLowerCase() !== 'true') {
+          const apiMessage = String(result.message || '').trim();
+          if (/activation/i.test(apiMessage)) {
+            throw new Error(
+              'El formulario aún no está activado. Revisa cferrusmico@gmail.com (y la carpeta de spam), abre el email de FormSubmit y haz clic en «Activate Form». Después vuelve a enviar el mensaje.'
+            );
+          }
+          throw new Error(apiMessage || 'send_failed');
         }
 
         form.reset();
@@ -293,6 +300,7 @@ function initContactForms() {
           alertBox.textContent =
             'Mensaje enviado correctamente. Te responderemos lo antes posible.';
           alertBox.classList.add('is-visible', 'is-success');
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'form_submit', {
@@ -300,11 +308,13 @@ function initContactForms() {
             event_label: 'contact_success',
           });
         }
-      } catch {
+      } catch (err) {
         if (alertBox) {
-          alertBox.textContent =
-            'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbenos directamente por email.';
+          const fallback =
+            'No se pudo enviar el mensaje. Inténtalo de nuevo o escríbenos directamente a cferrusmico@gmail.com.';
+          alertBox.textContent = err instanceof Error && err.message && err.message !== 'send_failed' ? err.message : fallback;
           alertBox.classList.add('is-visible', 'is-error');
+          alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
       } finally {
         if (submitBtn) {
