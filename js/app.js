@@ -405,7 +405,7 @@ function renderPropertyCard(p) {
         </div>
         <div class="price">${priceLabel}</div>
         <div class="card-actions">
-          <a class="btn-link" href="propiedad.html?id=${encodeURIComponent(p.id)}">Ver propiedad</a>
+          <a class="btn btn-primary btn-card" href="propiedad.html?id=${encodeURIComponent(p.id)}">Ver propiedad</a>
           <a class="btn btn-outline" href="contacto.html">Contactar</a>
         </div>
       </div>
