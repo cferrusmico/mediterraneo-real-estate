@@ -120,7 +120,7 @@ const PROPERTIES = [
     id: 'mre-006',
     mode: 'alquilar',
     type: 'local',
-    title: 'Local en alquiler, zona comercial',
+    title: 'Local en alquiler',
     price: 650,
     location: 'Sueca, Valencia',
     area: 62,
