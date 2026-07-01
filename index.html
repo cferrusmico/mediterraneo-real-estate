@@ -80,7 +80,7 @@
     <section class="hero hero-with-bg" id="inicio">
       <div class="container">
         <h1>Comprar o vender, sin complicaciones</h1>
-        <p class="subtitle">Hacemos que el proceso sea sencillo, transparente y sin líos. Encontramos hogares con encanto en las mejores zonas: desde casas junto al mar hasta pisos acogedores en el corazón de la ciudad.</p>
+        <p class="subtitle">Hacemos que encontrar tu hogar ideal sea fácil, transparente y sin complicaciones.</p>
         <div class="hero-actions">
           <a href="#comprar" class="btn btn-primary" data-ga-event="cta_hero" data-ga-label="ver_propiedades">Ver propiedades</a>
           <a href="valoracion.html" class="btn btn-outline btn-soft" data-ga-event="cta_hero" data-ga-label="tasar">Valora tu propiedad</a>
@@ -305,7 +305,13 @@
                 </div>
                 <div class="form-group">
                   <label for="telefono-home">Teléfono *</label>
-                  <input type="tel" id="telefono-home" name="telefono" required autocomplete="tel" placeholder="+34 600 000 000">
+                  <div class="phone-field" data-phone-field>
+                    <select class="phone-country" id="telefono-home-country" aria-label="País"></select>
+                    <div class="phone-input-wrap">
+                      <span class="phone-prefix" aria-hidden="true">+34</span>
+                      <input type="tel" id="telefono-home" name="telefono" class="phone-number" required autocomplete="tel-national" placeholder="600 000 000" inputmode="tel">
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group form-group-full">
                   <label for="email-home">Email *</label>

@@ -490,6 +490,78 @@ main {
   resize: vertical;
 }
 
+.phone-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.phone-country {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(30,42,53,0.18);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+
+.phone-country:focus {
+  outline: none;
+  border-color: rgba(15,111,138,0.55);
+  box-shadow: var(--focus);
+}
+
+.phone-input-wrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: stretch;
+  border: 1px solid rgba(30,42,53,0.18);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+
+.phone-input-wrap:focus-within {
+  border-color: rgba(15,111,138,0.55);
+  box-shadow: var(--focus);
+}
+
+.phone-input-wrap:has(.input-error) {
+  border-color: rgba(145, 43, 43, 0.50) !important;
+  box-shadow: 0 0 0 4px rgba(145, 43, 43, 0.10) !important;
+}
+
+.phone-prefix {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.75rem;
+  font-weight: 700;
+  color: rgba(30,42,53,0.72);
+  border-right: 1px solid rgba(30,42,53,0.12);
+  background: rgba(244,239,230,0.45);
+  white-space: nowrap;
+}
+
+.phone-number {
+  width: 100%;
+  border: 0;
+  padding: 0.7rem 0.9rem;
+  font-family: inherit;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.phone-number:focus {
+  outline: none;
+}
+
+.phone-number.input-error {
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;

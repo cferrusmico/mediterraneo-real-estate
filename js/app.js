@@ -193,6 +193,71 @@ function validatePhone(value) {
   return digits.length >= 9 && digits.length <= 15;
 }
 
+const PHONE_COUNTRIES = [
+  { code: 'ES', name: 'España', prefix: '+34' },
+  { code: 'PT', name: 'Portugal', prefix: '+351' },
+  { code: 'FR', name: 'Francia', prefix: '+33' },
+  { code: 'GB', name: 'Reino Unido', prefix: '+44' },
+  { code: 'DE', name: 'Alemania', prefix: '+49' },
+  { code: 'IT', name: 'Italia', prefix: '+39' },
+  { code: 'US', name: 'Estados Unidos', prefix: '+1' },
+  { code: 'MA', name: 'Marruecos', prefix: '+212' },
+  { code: 'AR', name: 'Argentina', prefix: '+54' },
+  { code: 'CO', name: 'Colombia', prefix: '+57' },
+  { code: 'MX', name: 'México', prefix: '+52' },
+  { code: 'NL', name: 'Países Bajos', prefix: '+31' },
+  { code: 'BE', name: 'Bélgica', prefix: '+32' },
+  { code: 'CH', name: 'Suiza', prefix: '+41' },
+  { code: 'RO', name: 'Rumanía', prefix: '+40' },
+];
+
+function populatePhoneCountrySelect(select) {
+  if (!select || select.options.length) return;
+  PHONE_COUNTRIES.forEach((country) => {
+    const option = document.createElement('option');
+    option.value = country.prefix;
+    option.textContent = `${country.name} (${country.prefix})`;
+    option.dataset.country = country.code;
+    if (country.code === 'ES') option.selected = true;
+    select.appendChild(option);
+  });
+}
+
+function syncPhonePrefix(container) {
+  if (!container) return;
+  const select = container.querySelector('.phone-country');
+  const prefixEl = container.querySelector('.phone-prefix');
+  if (select && prefixEl) prefixEl.textContent = select.value;
+}
+
+function getPhoneFieldValue(container) {
+  if (!container) return '';
+  const prefix = container.querySelector('.phone-country')?.value || '+34';
+  const local = container.querySelector('.phone-number')?.value || '';
+  const localDigits = local.replace(/\D/g, '');
+  const prefixDigits = prefix.replace(/\D/g, '');
+  if (!localDigits) return '';
+  return `+${prefixDigits}${localDigits}`;
+}
+
+function validatePhoneField(container) {
+  const local = container?.querySelector('.phone-number')?.value || '';
+  const digits = local.replace(/\D/g, '');
+  return digits.length >= 9 && digits.length <= 12;
+}
+
+function initPhoneFields() {
+  document.querySelectorAll('[data-phone-field]').forEach((field) => {
+    const select = field.querySelector('.phone-country');
+    populatePhoneCountrySelect(select);
+    syncPhonePrefix(field);
+
+    if (select) {
+      select.addEventListener('change', () => syncPhonePrefix(field));
+    }
+  });
+}
+
 function setFieldError(input, message) {
   if (!input) return;
   input.classList.add('input-error');
@@ -227,7 +292,8 @@ function initContactForms() {
       e.preventDefault();
       const nombre = form.querySelector('input[name="nombre"], #nombre');
       const email = form.querySelector('input[name="email"], #email');
-      const telefono = form.querySelector('input[name="telefono"], #telefono');
+      const phoneField = form.querySelector('[data-phone-field]');
+      const telefono = phoneField?.querySelector('.phone-number') || form.querySelector('input[name="telefono"], #telefono');
       const mensaje = form.querySelector('textarea[name="mensaje"], #mensaje');
       const alertBox = form.querySelector('[data-form-alert]');
       const submitBtn = form.querySelector('[type="submit"]');
@@ -247,9 +313,9 @@ function initContactForms() {
         ok = false;
         setFieldError(email, 'Introduce un email válido.');
       }
-      if (!telefono || !validatePhone(telefono.value)) {
+      if (phoneField ? !validatePhoneField(phoneField) : !telefono || !validatePhone(telefono.value)) {
         ok = false;
-        setFieldError(telefono, 'Introduce un teléfono válido (9–15 dígitos).');
+        setFieldError(telefono, 'Introduce un teléfono válido (9–12 dígitos).');
       }
       if (mensaje && mensaje.hasAttribute('required') && !String(mensaje.value || '').trim()) {
         ok = false;
@@ -274,7 +340,7 @@ function initContactForms() {
           body: JSON.stringify({
             name: String(nombre?.value || '').trim(),
             email: String(email?.value || '').trim(),
-            phone: String(telefono?.value || '').trim(),
+            phone: phoneField ? getPhoneFieldValue(phoneField) : String(telefono?.value || '').trim(),
             message: String(mensaje?.value || '').trim() || '(sin mensaje)',
             _subject: 'Nuevo mensaje desde la web — Mediterráneo Real Estate',
             _replyto: String(email?.value || '').trim(),
@@ -354,7 +420,10 @@ function initValuationTool() {
     const habitaciones = form.querySelector('[name="habitaciones"]').value;
     const estado = form.querySelector('[name="estado"]').value;
     const email = form.querySelector('[name="email"]').value;
-    const telefono = form.querySelector('[name="telefono"]').value;
+    const phoneField = form.querySelector('[data-phone-field]');
+    const telefono = phoneField
+      ? getPhoneFieldValue(phoneField)
+      : form.querySelector('[name="telefono"]')?.value;
 
     ['email', 'telefono', 'ubicacion', 'metros'].forEach((name) => clearFieldError(form.querySelector(`[name="${name}"]`)));
 
@@ -371,9 +440,12 @@ function initValuationTool() {
       ok = false;
       setFieldError(form.querySelector('[name="email"]'), 'Introduce un email válido.');
     }
-    if (!validatePhone(telefono)) {
+    if (phoneField ? !validatePhoneField(phoneField) : !validatePhone(telefono)) {
       ok = false;
-      setFieldError(form.querySelector('[name="telefono"]'), 'Introduce un teléfono válido (9–15 dígitos).');
+      setFieldError(
+        phoneField?.querySelector('.phone-number') || form.querySelector('[name="telefono"]'),
+        'Introduce un teléfono válido (9–12 dígitos).'
+      );
     }
     if (!ok) return;
 
@@ -477,7 +549,10 @@ function initValuationWizard() {
     if (step === 2) return Boolean(String(state.ubicacion || '').trim());
     if (step === 3) return Number(state.metros) > 0 && state.habitaciones >= 0 && state.banos >= 0;
     if (step === 5) return Boolean(state.motivo);
-    if (step === 6) return validateEmail(state.email) && validatePhone(state.telefono);
+    if (step === 6) {
+      const phoneField = form.querySelector('[data-phone-field]');
+      return validateEmail(state.email) && (phoneField ? validatePhoneField(phoneField) : validatePhone(state.telefono));
+    }
     return true;
   };
 
@@ -521,7 +596,10 @@ function initValuationWizard() {
     if (name === 'nombre') state.nombre = t.value;
     if (name === 'apellido') state.apellido = t.value;
     if (name === 'email') state.email = t.value;
-    if (name === 'telefono') state.telefono = t.value;
+    if (name === 'telefono') {
+      const field = t.closest('[data-phone-field]');
+      state.telefono = field ? getPhoneFieldValue(field) : t.value;
+    }
     if (name === 'detalles') {
       state.detalles = t.value;
       const count = document.getElementById('w-count');
@@ -537,6 +615,11 @@ function initValuationWizard() {
         x.getAttribute('value')
       );
       state.extras = checked.filter(Boolean);
+    }
+    if (t.classList.contains('phone-country')) {
+      const field = t.closest('[data-phone-field]');
+      syncPhonePrefix(field);
+      if (field) state.telefono = getPhoneFieldValue(field);
     }
   });
 
@@ -563,6 +646,8 @@ function initValuationWizard() {
     state.ubicacion = String(state.ubicacion || '').trim();
     state.email = String(state.email || '').trim();
     state.telefono = String(state.telefono || '').trim();
+    const wizardPhoneField = form.querySelector('[data-phone-field]');
+    if (wizardPhoneField) state.telefono = getPhoneFieldValue(wizardPhoneField);
 
     if (!validateStep(6)) return;
 
@@ -745,6 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initSmoothScroll();
   initReveal();
+  initPhoneFields();
   initContactForms();
   initValuationTool();
   initValuationWizard();
